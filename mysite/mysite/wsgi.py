@@ -8,9 +8,17 @@ https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
 """
 
 import os
-
+import sys
+import logging
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
+# Tambahkan logging untuk membantu debugging jika terjadi error
+logger = logging.getLogger(__name__)
 
-application = get_wsgi_application()
+try:
+    # Pastikan variabel environment sudah di-set
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", os.getenv("DJANGO_SETTINGS_MODULE", "mysite.settings"))
+    application = get_wsgi_application()
+except Exception as e:
+    logger.error("WSGI Application Error: %s", e)
+    sys.exit(1)
