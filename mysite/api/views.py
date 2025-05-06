@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from .models import BlogPost
 from .serializers import BlogPostSerializer
 
-
 class BlogPostListCreate(generics.ListCreateAPIView):
     """
     API endpoint untuk menampilkan daftar blog post dan membuat blog post baru.
@@ -28,7 +27,6 @@ class BlogPostListCreate(generics.ListCreateAPIView):
             {"message": f"{deleted_count} blog post(s) deleted."},
             status=status.HTTP_204_NO_CONTENT
         )
-
 
 class BlogPostRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     """
